@@ -21,6 +21,7 @@ function App() {
       <GridItem area={'main'} >
         <GameGrid/>
       </GridItem>
+      
     </Grid>
 )}
 
