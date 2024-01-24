@@ -4,7 +4,8 @@ import { CanceledError } from "axios";
 
 
 //T[]-->for generic function
-//for multiple function
+//Fiecare obiect de ex Genre va fi de tipul generic(orice tip de data)
+
 
 interface FetchResponse<T>{
     count:number;
