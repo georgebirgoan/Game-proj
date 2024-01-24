@@ -15,6 +15,8 @@ interface FetchResponse<T>{
 
 //unknown-->any
 
+//hooks impreuna cu dependente
+
 const useData=<T>(endpoint:string,requestConfig?:AxiosRequestConfig,deps?: unknown[])=>{
     const [data,setData]=useState<T[]>([]);
     const [error,setError]=useState('');

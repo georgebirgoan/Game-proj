@@ -16,8 +16,15 @@ export interface Game {
     metacritic:number;
 }
 
+/*
+dependente--> determină re-executarea efectului asociat
+[selectedGenre?.id] reprezintă deps, 
+iar schimbările în selectedGenre?.id vor determina re-executarea efectului.*/
 
-const useGames=(selectedGenre:Genre | null)=>useData<Game>('/games',{params:{genres:selectedGenre?.id}},[selectedGenre?.id]);
+
+
+const useGames=(selectedGenre:Genre | null)=>
+useData<Game>('/games',{params:{genres:selectedGenre?.id}},[selectedGenre?.id]);
 
 
 export default useGames;
