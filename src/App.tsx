@@ -4,6 +4,12 @@ import GameGrid from "./components/GameGrid"
 import GenreList from "./components/GenreList"
 
 
+/* here we fixed width for aside column
+   templateColumns={{
+      base:'1fr',
+      lg:'200px 1fr'
+    }}  */
+
 
 function App() {
  return(   
