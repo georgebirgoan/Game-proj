@@ -2,6 +2,11 @@ import { Grid, GridItem, Show } from "@chakra-ui/react"
 import NavBar from "./components/NavBar"
 import GameGrid from "./components/GameGrid"
 import GenreList from "./components/GenreList"
+import { useState } from "react"
+import { Genre } from "./hooks/useGenre"
+
+
+
 
 
 /* here we fixed width for aside column
@@ -12,6 +17,9 @@ import GenreList from "./components/GenreList"
 
 
 function App() {
+    //null-->no genres is selected
+    const[selectedGenre,setSelectedGenre]=useState<Genre | null >(null)
+
  return(   
     <Grid templateAreas={{
       base:`"nav" "main"`,
@@ -29,12 +37,12 @@ function App() {
       
       <Show above="lg" >
       <GridItem area={'aside'} paddingX='5px' >
-          <GenreList/>
+          <GenreList onSelecetGenre={(genre)=>setSelectedGenre(genre)}/>
       </GridItem>
       </Show>
       
       <GridItem area={'main'} >
-        <GameGrid/>
+        <GameGrid selectedGenre={selectedGenre}/>
       </GridItem>
       
     </Grid>
