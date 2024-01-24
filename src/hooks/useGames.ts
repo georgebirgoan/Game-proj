@@ -1,5 +1,5 @@
+import { GameQuery } from "../App";
 import useData from "./useData";
-import { Genre } from "./useGenre";
 
 export interface Platform{
     id:number;
@@ -23,12 +23,13 @@ iar schimbările în selectedGenre?.id vor determina re-executarea efectului.*/
 
 
 
-const useGames=(selectedGenre:Genre | null,selectedPlatform: Platform | null)=>
+const useGames=(gameQuery:GameQuery)=>
 useData<Game>('/games',
 {params:{
-    genres:selectedGenre?.id,
-    platforms:selectedPlatform?.id}},
-[selectedGenre?.id,selectedPlatform?.id]);
+    genres:gameQuery.genre?.id,
+    platforms:gameQuery.platform?.id}},
+[gameQuery]);
 
+//selectedGenre?.id,selectedPlatform?.id-->we put all in a object
 
 export default useGames;
