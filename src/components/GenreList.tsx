@@ -11,8 +11,10 @@ interface Props{
 const GenreList = ({onSelecetGenre,selectedGenre}:Props) => {
    const{data,isLoading,error}=useGenre();
 
+   //no need these,cause we have static data
     if(error) return null;
     if(isLoading) return <Spinner/>
+
     return (
         <>
         <Heading fontSize='2xl' marginBottom='3' >Genres</Heading>
