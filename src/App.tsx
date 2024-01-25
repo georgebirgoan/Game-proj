@@ -22,6 +22,7 @@ export interface GameQuery{
       lg:'200px 1fr'
     }}  */
 
+//We can use HStack or Flex
 
 function App() {
   const [gameQuery,setGameQuery]=useState<GameQuery>({} as GameQuery)
@@ -55,12 +56,12 @@ function App() {
       </Show>
       
       <GridItem area={'main'} >
-        <HStack spacing={5} paddingLeft={2} marginBottom={5}>
-          
+        <HStack spacing={5}  paddingLeft={2} marginBottom={5}>
           <PlatformSelector selectedPlatform={gameQuery.platform} 
             onSelectPlatform={(platform)=>setGameQuery({...gameQuery,platform})}/>
-          <SortSelector sortOrder={gameQuery.sortOrder} onSelectSortOrder={(sortOrder)=>setGameQuery({...gameQuery,sortOrder})}/>
-        
+            
+          <SortSelector sortOrder={gameQuery.sortOrder}
+           onSelectSortOrder={(sortOrder)=>setGameQuery({...gameQuery,sortOrder})}/>
         </HStack>
         <GameGrid gameQuery={gameQuery} />
 
