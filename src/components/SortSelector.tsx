@@ -25,7 +25,7 @@ const currentSortOrder=sortOrders.find(order=>order.value === sortOrder)
             Order by: {currentSortOrder?.label || 'Relevance'}
         </MenuButton>
 
-    <MenuList>
+    <MenuList bg='black' color='gray bold'>
         {sortOrders.map(order=>
         <MenuItem onClick={()=>onSelectSortOrder(order.value)} key={order.value}
          value={order.value}>{order.label}</MenuItem>)}
