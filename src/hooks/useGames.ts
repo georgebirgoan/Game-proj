@@ -1,6 +1,9 @@
 import { GameQuery } from "../App";
 import useData from "./useData";
 
+//toate query-urile pt backend se fac in acest obiect
+//apoi orice alta functionalitate(genre,platforms,sort) pt backend se face in acesta
+
 export interface Platform{
     id:number;
     name:string;
@@ -28,7 +31,8 @@ const useGames=(gameQuery:GameQuery)=>
         {params:{
             genres:gameQuery.genre?.id,
             platforms:gameQuery.platform?.id,
-            ordering:gameQuery.sortOrder
+            ordering:gameQuery.sortOrder,
+            search:gameQuery.searchText
         }},
         [gameQuery]);
 

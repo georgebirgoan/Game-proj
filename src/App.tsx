@@ -12,6 +12,7 @@ export interface GameQuery{
   platform:Platform | null;
   genre:Genre | null;
   sortOrder:string; //new string after sorter
+  searchText:string;
 }
 
 
@@ -46,7 +47,8 @@ function App() {
 
 
       <GridItem area={'nav'} >
-        <NavBar/></GridItem>
+        <NavBar onSearch={(searchText)=> setGameQuery({...gameQuery,searchText})}/>
+      </GridItem>
       
       <Show above="lg" >
       <GridItem area={'aside'} paddingX='5px' >
@@ -59,7 +61,7 @@ function App() {
         <HStack spacing={5}  paddingLeft={2} marginBottom={5}>
           <PlatformSelector selectedPlatform={gameQuery.platform} 
             onSelectPlatform={(platform)=>setGameQuery({...gameQuery,platform})}/>
-            
+
           <SortSelector sortOrder={gameQuery.sortOrder}
            onSelectSortOrder={(sortOrder)=>setGameQuery({...gameQuery,sortOrder})}/>
         </HStack>
