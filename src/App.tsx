@@ -73,7 +73,6 @@ function App() {
         <GameGrid gameQuery={gameQuery} />
 
       </GridItem>
-      
     </Grid>
 )}
 
