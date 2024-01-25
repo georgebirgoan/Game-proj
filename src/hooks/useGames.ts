@@ -24,14 +24,14 @@ iar schimbările în selectedGenre?.id vor determina re-executarea efectului.*/
 
 
 const useGames=(gameQuery:GameQuery)=>
-useData<Game>('/games',
-{params:{
-    genres:gameQuery.genre?.id,
-    platforms:gameQuery.platform?.id,
-    ordering:gameQuery.sortOrder
-}},
-[gameQuery]);
+    useData<Game>('/games',
+        {params:{
+            genres:gameQuery.genre?.id,
+            platforms:gameQuery.platform?.id,
+            ordering:gameQuery.sortOrder
+        }},
+        [gameQuery]);
 
-//selectedGenre?.id,selectedPlatform?.id-->we put all in a object
+//selectedGenre?.id,selectedPlatform?.id-->we put all in a object gameQuery
 
 export default useGames;

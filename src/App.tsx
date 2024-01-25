@@ -31,7 +31,8 @@ function App() {
 
 
 
- return(   
+ return( 
+  //impartirea gridului pt main si aside  
     <Grid templateAreas={{
       base:`"nav" "main"`,
       lg:`"nav nav" "aside main"`//1024px
@@ -55,9 +56,11 @@ function App() {
       
       <GridItem area={'main'} >
         <HStack spacing={5} paddingLeft={2} marginBottom={5}>
+          
           <PlatformSelector selectedPlatform={gameQuery.platform} 
             onSelectPlatform={(platform)=>setGameQuery({...gameQuery,platform})}/>
           <SortSelector sortOrder={gameQuery.sortOrder} onSelectSortOrder={(sortOrder)=>setGameQuery({...gameQuery,sortOrder})}/>
+        
         </HStack>
         <GameGrid gameQuery={gameQuery} />
 
