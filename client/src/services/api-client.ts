@@ -8,7 +8,6 @@ interface FetchResponse<T> {
 export const apiClient = async <T>(endpoint: string, requestConfig: AxiosRequestConfig) => {
     try {
         const response = await axios.get<FetchResponse<T>>(endpoint, requestConfig); // Utilizează endpoint-ul și configurațiile de cerere
-        console.log("response from back", response);
         if (!response.data) {
             throw new Error("Nu există răspuns");
         }

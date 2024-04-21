@@ -12,7 +12,7 @@ interface Props{
 
 const PlatformSelector = ({onSelectPlatform,selectedPlatform}:Props) => {
     const {data,error}=usePlatform();
-    console.log("data",data);
+    //console.log("data",data);
     if (error || !data) return null;
     if(error)return null;
 

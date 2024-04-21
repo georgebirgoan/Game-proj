@@ -28,7 +28,7 @@ iar schimbările în selectedGenre?.id vor determina re-executarea efectului.*/
 
 //aici se potrivesc jocurile dupa cateogoria aleasa:gen,platforma,ordine si search
 const useGames=(gameQuery:GameQuery)=>
-    useData<Game>('http://localhost:5000/api/rawg',
+    useData<Game>('http://localhost:5000/api/rawg/games',
         {params:{
             genres:gameQuery.genre?.id,
             platforms:gameQuery.platform?.id,
