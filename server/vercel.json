@@ -1,4 +1,4 @@
-{
+/*{
     "version":2,
     "builds":[{
         "src": ".server/index.js",
@@ -8,4 +8,4 @@
     "routes":[{"src":"/api/rawg",
     "dest":"/api/rawg"}]
 
-}
+}*/
