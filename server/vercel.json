@@ -5,7 +5,7 @@
         "use":"@vercel/node"
 
     }],
-    "routes":[{"src":"/api/rawg",
-    "dest":"/api/rawg"}]
+    "routes":[{"src":"*/(.*)",
+    "dest":"/"}]
 
 }
