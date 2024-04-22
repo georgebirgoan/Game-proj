@@ -9,7 +9,7 @@ const API_KEY = '2948fdf4d7be470fb2eaa5206b6d404f';
 const BASE_URL = 'https://api.rawg.io/api';
 
 
-app.get("/",()=>{
+app.get("/",(req,res)=>{
   res.send("Server is running");
 })
 
