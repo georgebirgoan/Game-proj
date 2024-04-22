@@ -9,9 +9,8 @@ const API_KEY = '2948fdf4d7be470fb2eaa5206b6d404f';
 const BASE_URL = 'https://api.rawg.io/api';
 
 
-app.get('/api/rawg/games', async (req, res) => {
+app.get('/api/rawg', async (req, res) => {
   try {
-    console.log("ajunge in games")
     const response = await axios.get(`${BASE_URL}/games`, {//sau games
       params: { key: API_KEY },
     });
