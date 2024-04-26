@@ -1,13 +1,11 @@
-import axios, { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from "react";
-
-interface FetchResponse<T> {
-  count: number;
-  results: T[];
-}
+import games from '../data/games';
+import { AxiosRequestConfig } from "axios";
 
 
-const useData = <T>(requestConfig?: AxiosRequestConfig,deps?: unknown[]) => {
+
+
+const useData = <T>(request?:AxiosRequestConfig,deps?: unknown[]) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -15,15 +13,11 @@ const useData = <T>(requestConfig?: AxiosRequestConfig,deps?: unknown[]) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        
         setLoading(true);
-          const response = await axios.get<FetchResponse<T>>("http://localhost:5000/api/rawg",requestConfig); 
-        console.log(response.data.results);
-        if (response) {
-          setData(response.data.results);
-        } else {
-          throw new Error("No data received from server");
-        }
+        setData(games.results as T[]);
         setLoading(false);
+
       } catch (error) {
         setError("Error fetching data from the server");
         setLoading(false);
@@ -31,7 +25,7 @@ const useData = <T>(requestConfig?: AxiosRequestConfig,deps?: unknown[]) => {
     };
 
     fetchData();
-  },deps ? [...deps]:[]);
+  },deps ? [...deps]: []);
 
   return { data, error, isLoading };
 };
