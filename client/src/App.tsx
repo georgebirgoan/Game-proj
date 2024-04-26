@@ -32,14 +32,18 @@ export interface GameQuery{
 
 function App() {
   const [gameQuery,setGameQuery]=useState<GameQuery>({} as GameQuery)//va prelua date dintr-un obiect(query)
-  
-    /*const[selectedGenre,setSelectedGenre]=useState<Genre | null >(null)
+  /*const[selectedGenre,setSelectedGenre]=useState<Genre | null >(null)
     const [selectedPlatform,setSelectedPlatform]=useState<Platform | null>(null)*/
+  
+  
+
+
 
 
 
  return( 
-  //impartirea gridului pt main si aside  
+  <>
+ 
     <Grid templateAreas={{
       base:`"nav" "main"`,
       lg:`"nav nav" "aside main"`//1024px
@@ -82,6 +86,6 @@ function App() {
 
       </GridItem>
     </Grid>
+</>
 )}
-
 export default App

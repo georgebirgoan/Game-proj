@@ -11,6 +11,7 @@ interface Props {
 
 const GameGrid = ({ gameQuery }: Props) => {
   const { data, isLoading } = useGames(gameQuery);
+  //console.log("data gamegrid",data);
   const skeletons = [1, 2, 3, 4, 5, 6];
   
 
@@ -26,6 +27,8 @@ const GameGrid = ({ gameQuery }: Props) => {
             <GameCardSkeleton />
           </GameCardConatiner>
         ))}
+
+
       {data.map((game) => (
         <GameCardConatiner key={game.id}>
           <GameCard game={game} />

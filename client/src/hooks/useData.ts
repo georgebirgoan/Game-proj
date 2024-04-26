@@ -1,38 +1,39 @@
-import { AxiosRequestConfig, CanceledError } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from "react";
 import { apiClient } from '../services/api-client';
 
-
-/*interface FetchResponse<T> {
+interface FetchResponse<T> {
   count: number;
   results: T[];
-}*/
+}
 
-const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: unknown[]) => {
+
+const useData = <T>(requestConfig?: AxiosRequestConfig,deps?:unknown[]) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    const controller = new AbortController();
-
-    setLoading(true);
-    apiClient<T>(endpoint, { signal: controller.signal, ...requestConfig }) // Transmiti endpoint-ul si configuratiile de cerere catre apiClient
-      .then((res) => {
-        setData(res.data.results);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+          const response = await axios.get<FetchResponse<T>>("http://localhost:5000/api/rawg",requestConfig); 
+        console.log(response.data.results);
+        if (response) {
+          setData(response.data.results);
+        } else {
+          throw new Error("No data received from server");
+        }
         setLoading(false);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError(err.message);
+      } catch (error) {
+        setError("Error fetching data from the server");
         setLoading(false);
-      });
+      }
+    };
 
-    return () => controller.abort();
+    fetchData();
+  },[...deps],[]);
 
-  }, deps ? [...deps] : []);
-
-  
   return { data, error, isLoading };
 };
 
