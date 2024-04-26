@@ -7,7 +7,7 @@ interface FetchResponse<T> {
 }
 
 
-const useData = <T>(requestConfig?: AxiosRequestConfig,deps?:unknown[]) => {
+const useData = <T>(requestConfig?: AxiosRequestConfig,deps?: unknown[]) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -31,7 +31,7 @@ const useData = <T>(requestConfig?: AxiosRequestConfig,deps?:unknown[]) => {
     };
 
     fetchData();
-  },[]);
+  },deps ? [...deps]:[]);
 
   return { data, error, isLoading };
 };
