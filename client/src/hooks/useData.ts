@@ -31,7 +31,7 @@ const useData = <T>(requestConfig?: AxiosRequestConfig,deps?:unknown[]) => {
     };
 
     fetchData();
-  },[deps],[]);
+  },[]);
 
   return { data, error, isLoading };
 };
