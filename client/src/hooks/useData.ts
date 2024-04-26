@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from "react";
-import { apiClient } from '../services/api-client';
 
 interface FetchResponse<T> {
   count: number;
@@ -32,7 +31,7 @@ const useData = <T>(requestConfig?: AxiosRequestConfig,deps?:unknown[]) => {
     };
 
     fetchData();
-  },[...deps],[]);
+  },[deps],[]);
 
   return { data, error, isLoading };
 };
