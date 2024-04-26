@@ -5,7 +5,7 @@ import { AxiosRequestConfig } from "axios";
 
 
 
-const useData = <T>(request?:AxiosRequestConfig,deps?: unknown[]) => {
+const useData = <T>( _config?: AxiosRequestConfig,deps?: unknown[]) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
