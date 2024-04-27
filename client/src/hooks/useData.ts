@@ -14,7 +14,7 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?:
     console.log("deps in useData",deps);
 
 
-    axios.get(`http://localhost:5000/api/rawg/${endpoint}`, {
+    axios.get(`http://localhost:5000/api/rawg${endpoint}`, {
       signal: controller.signal,
       ...requestConfig,
     })
