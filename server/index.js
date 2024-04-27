@@ -9,7 +9,6 @@ app.use(cookieParser());
     
 app.use(cors({
   origin: 'http://localhost:5173',
-  credentials: true
 }));
 
 const API_KEY = '2948fdf4d7be470fb2eaa5206b6d404f';
