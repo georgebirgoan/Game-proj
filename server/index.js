@@ -1,23 +1,34 @@
-const express=require("express");
-const axios=require("axios");
-const cors=require("cors");
-
+const express = require("express");
+const axios = require("axios");
+const cors = require("cors");
+const cookieParser=require("cookie-parser");
 const app = express();
-app.use(cors());
+
+
+app.use(cookieParser());
+    
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
 
 const API_KEY = '2948fdf4d7be470fb2eaa5206b6d404f';
 const BASE_URL = 'https://api.rawg.io/api/games';
-
-
-app.get("/",(req,res)=>{
-  res.send("Server is running");
-})
-
-app.get('/api/rawg', async (req, res) => {
+app.get("/api/rawg/games", async (req, res) => {
   try {
-    const response = await axios.get(`${BASE_URL}`, {//sau games
-      params: { key: API_KEY },
-    });
+    const { genres, platforms, sortOrder, searchText } = req.query;
+    console.log("in server");
+
+    const params = {
+      key: API_KEY,
+      genres: genres,
+      platforms: platforms,
+    };
+    
+    console.log(params.sortOrder);
+
+
+    const response = await axios.get(BASE_URL, { params });
     res.json(response.data);
 
   } catch (error) {
@@ -25,6 +36,10 @@ app.get('/api/rawg', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
+
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

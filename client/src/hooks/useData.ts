@@ -1,33 +1,56 @@
 import { useEffect, useState } from "react";
-import games from '../data/games';
-import { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
+interface FetchResponse<T> {
+  count: number;
+  results: T[];
+}
 
-
-
-const useData = <T>( _config?: AxiosRequestConfig,deps?: unknown[]) => {
+const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: unknown[]) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
-
+  
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        
-        setLoading(true);
-        setData(games.results as T[]);
-        setLoading(false);
+    const controller = new AbortController();
+    setLoading(true);
+    console.log("deps in useData",deps);
 
-      } catch (error) {
-        setError("Error fetching data from the server");
-        setLoading(false);
-      }
-    };
 
-    fetchData();
-  },deps ? [...deps]: []);
+    axios.get(`http://localhost:5000/api/rawg${endpoint}`, {
+      signal: controller.signal,
+      ...requestConfig,
+      withCredentials:true
+    })
+      .then(response => {
+        console.log("deps",deps);
+        console.log("data in useData",response.data.results);
+        setData(response.data.results);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) return;
+        setError(err.message);
+        setLoading(false);
+      });
+
+    
+    return () => controller.abort();
+  }, deps ? [...deps] : []);
 
   return { data, error, isLoading };
 };
 
 export default useData;
+
+
+
+
+
+
+
+
+
+
+
+

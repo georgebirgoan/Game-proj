@@ -9,6 +9,7 @@ interface Props{
 }
 
 const NavBar = ({onSearch}:Props) => {
+  console.log("in navbar pt search")
   return (
     <HStack padding={'10px'}>
         <Image src={logo} boxSize={'60px'}/>

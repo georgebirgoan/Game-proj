@@ -9,14 +9,10 @@ import { Platform } from "./hooks/useGames"
 import SortSelector from "./components/SortSelector"
 import GameHeading from "./components/GameHeading"
 
-//pagina principala
-
-
-
 export interface GameQuery{
   platform:Platform | null;
   genre:Genre | null;
-  sortOrder:string; //new string after sorter
+  sortOrder:string; 
   searchText:string;
 }
 
@@ -33,13 +29,8 @@ export interface GameQuery{
 function App() {
   const [gameQuery,setGameQuery]=useState<GameQuery>({} as GameQuery)//va prelua date dintr-un obiect(query)
   /*const[selectedGenre,setSelectedGenre]=useState<Genre | null >(null)
-    const [selectedPlatform,setSelectedPlatform]=useState<Platform | null>(null)*/
-  
-  
-
-
-
-
+  const [selectedPlatform,setSelectedPlatform]=useState<Platform | null>(null)*/
+  console.log("gamequery",gameQuery);
 
  return( 
   <>
@@ -53,8 +44,7 @@ function App() {
       lg:'200px 1fr'
     }}  
     >
-
-      
+      {/*cautare */}
       <GridItem area={'nav'} >
         <NavBar onSearch={(searchText)=> setGameQuery({...gameQuery,searchText})}/>
       </GridItem>
@@ -78,8 +68,13 @@ function App() {
                 onSelectPlatform={(platform)=>setGameQuery({...gameQuery,platform})}/>
               </Box>
               
+
+              {/*sortare */}
               <SortSelector sortOrder={gameQuery.sortOrder}
               onSelectSortOrder={(sortOrder)=>setGameQuery({...gameQuery,sortOrder})}/>
+
+
+
           </Flex>
         </Box>
         <GameGrid gameQuery={gameQuery} />
