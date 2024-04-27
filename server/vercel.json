@@ -1,14 +1,20 @@
 {
     "version": 2,
-    "routes": [
+    "builds":[
       {
-        "src": "/api/rawg",
-        "dest": "./index.js" 
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/"
+      "src":"*.js",
+      "use":"@vercel/node"
       }
+    ],
+    "routes":[
+      {
+        "src":"*./(.*)",
+        "dest":"/"
+      }
+
+
+
     ]
-  }
+}
+  
   
