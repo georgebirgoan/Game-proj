@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 
-interface FetchResponse<T> {
-  count: number;
-  results: T[];
-}
+
 
 const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: unknown[]) => {
   const [data, setData] = useState<T[]>([]);
