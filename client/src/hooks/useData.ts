@@ -17,6 +17,7 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?:
     axios.get(`https://game-proj-server.vercel.app/api/rawg${endpoint}`, {
       signal: controller.signal,
       ...requestConfig,
+       withCredentials:true
     })
       .then(response => {
         console.log("deps",deps);
