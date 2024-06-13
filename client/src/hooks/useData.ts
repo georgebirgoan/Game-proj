@@ -17,7 +17,6 @@ interface GameData {
 const useData = <T, >(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: unknown[]) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
-  console.log(error);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -55,7 +54,9 @@ const useData = <T, >(endpoint: string, requestConfig?: AxiosRequestConfig, deps
         if (requestConfig.params.search) {
           filteredData = filteredData.filter(game =>
             game.name.toLowerCase().includes(requestConfig.params.search.toLowerCase())
-          );
+          )
+        }else{
+          setError("errpare");
         }
 
         // Sortare
