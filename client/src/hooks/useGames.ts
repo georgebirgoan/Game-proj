@@ -18,7 +18,7 @@ export interface Game {
 
 const useGames = (gameQuery: GameQuery) =>
   useData<Game>(
-    "/games",
+    "/static", // sau endpoint-ul tău API
     {
       params: {
         genres: gameQuery.genre?.id,
@@ -27,7 +27,7 @@ const useGames = (gameQuery: GameQuery) =>
         search: gameQuery.searchText
       },
     },
-    [gameQuery]
+    [gameQuery] 
   );
 
 export default useGames;

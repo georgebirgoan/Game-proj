@@ -17,7 +17,7 @@ const SearchInput = ({onSearch}:Props) => {
 
   return (
         <form onSubmit={(event)=>{
-            event.preventDefault();//preventing form to be posting -->server
+            event.preventDefault();
             if(ref.current) onSearch(ref.current.value)
         }}>
             <InputGroup>
