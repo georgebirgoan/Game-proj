@@ -12,13 +12,12 @@ interface GameData {
   genres: { id: number; name: string }[];
 }
 
-interface DataResponse<T> {
-  results: T[];
-}
+
 
 const useData = <T, >(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: unknown[]) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
+  console.log(error);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
